@@ -1,0 +1,28 @@
+{% extends "Layout.html" %}
+
+{% block title %}
+    Category Content
+{% endblock %}
+
+{% block css_code %}
+    <link rel="stylesheet" href="/static/css/Category_Content_Page_Style.css">
+{% endblock %}
+
+{% block container %}
+    {% for pro in p_i_c %}
+        <div class="div1">
+                <div class="new_or_off_1">
+                    <div class="off_1">{{ pro.off }}% OFF</div>
+{#                    <a href="{% url 'category_content' pro.category.id %}">#}
+{#                        <button class="category_button_1">Categ</button>#}
+{#                    </a>#}
+                    <div class="new_1">new</div>
+                </div>
+            <h1 class="pro_title">{{ pro.title }}</h1>
+
+            <a href="{% url 'product_details' pro.slug %}">
+                <button class="details_button">Details</button>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

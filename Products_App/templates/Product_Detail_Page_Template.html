@@ -1,0 +1,13 @@
+{% extends "Layout.html" %}
+{% block title %}
+    {{ a_s_l.title }}
+{% endblock %}
+
+{% block css_code %}
+    <link rel="stylesheet" href="/static/css/Product_Details_Page_Style.css">
+{% endblock %}
+{% block container %}
+    <h1>{{ a_s_l.title }}</h1>
+    <h3>{{ a_s_l.price }}</h3>
+    <p>{{ a_s_l.description }}</p>
+{% endblock %}

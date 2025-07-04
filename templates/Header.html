@@ -1,0 +1,21 @@
+<header class="header">
+    <ul>
+        <li><a href="{% url 'home' %}">
+            <button class="Home_Button">Home</button>
+        </a></li>
+        <li><a href="{% url 'products_list' %}">
+            <button class="Store_Button">Store</button>
+        </a></li>
+        <li><a href="#">
+            <button class="Contact_Us_Button">Contact Us</button>
+        </a></li>
+        <li class="Drop_Down">
+            <button class="Category_Button">Categories</button>
+            <div class="Drop_Down_Content">
+                {% for ctgr in categories_in_dropdown %}
+                    <div><a href="{% url 'category_content' ctgr.slug %}">{{ ctgr.title }}</a></div>
+                {% endfor %}
+            </div>
+        </li>
+    </ul>
+</header>
