@@ -4,3 +4,4 @@ from Products_App.models import *
 
 admin.site.register(Product_Model)
 admin.site.register(Product_Category)
+admin.site.register(Product_Color)

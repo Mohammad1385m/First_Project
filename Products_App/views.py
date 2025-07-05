@@ -5,8 +5,6 @@ from Products_App.models import *
 
 # Create your views here.
 
-def index(request):
-    return "hi"
 def products_list(request):
     pros = Product_Model.objects.all().order_by("-id")
     new_pros = pros[:3]
@@ -18,7 +16,11 @@ def products_list(request):
 
 def product_detail(request, slug):
     a_single_product = Product_Model.objects.filter(slug=slug).first()
-    return render(request, "Product_Detail_Page_Template.html", {"a_s_l": a_single_product})
+    pro_color = Product_Color.objects.filter(product_model=a_single_product)
+    return render(request, "Product_Detail_Page_Template.html", {
+        "a_s_p": a_single_product,
+        "pro_color" : pro_color
+    })
 
 
 def category_content(request, slug):
