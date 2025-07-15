@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_render_partial',
     'Home_App',
-    'Products_App'
+    'Products_App',
+    'User_App',
+    'Contact_Us_App'
 ]
 
 MIDDLEWARE = [
@@ -71,7 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
+AUTH_USER_MODEL = 'User_App.User_Model'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
