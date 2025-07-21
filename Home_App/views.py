@@ -4,8 +4,11 @@ from Products_App.models import *
 
 # Create your views here.
 
-def product_list_in_home(request):
-    return render(request, "Home_Page_Template.html", {})
+def product_list_in_slider1(request):
+    products = Product_Model.objects.filter(is_active=True)
+    return render(request, "index.html", {
+        "products" : products
+    })
 
 def header_component(request):
     categories_in_dropdown = Product_Category.objects.filter(is_active=True)

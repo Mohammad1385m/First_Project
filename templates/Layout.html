@@ -1,17 +1,20 @@
 {% load render_partial %}
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/assets/image/fav.png">
+
+
     <title>
         {% block title %}
 
         {% endblock %}
     </title>
-    <link rel="stylesheet" href="/static/css/Layout_Style.css">
+
+    <link rel="stylesheet" href="/static/assets/css/main.css">
     {% block css_code %}
 
     {% endblock %}
@@ -20,10 +23,29 @@
 {% render_partial "Home_App.views.header_component" %}
 
 <div class="container">
+      <!-- loading -->
+    <div id="loading" class="z-50 fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-bl from-zinc-50 to-zinc-100 transition-opacity duration-700">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+        </div>
+    <div class="flex items-center gap-6 mt-10">
+      <img class="max-w-20 md:max-w-36" src="/static/assets/image/logo.png" alt=""/>
+      <div class="text-xl md:text-3xl font-yekanBakhExtraBold text-zinc-800">فروشگاه آنلاین دیجیتو</div>
+    </div>
+  </div>
+
     {% block container %}
 
     {% endblock %}
 </div>
 {% render_partial "Home_App.views.footer_component" %}
 </body>
+{% block js %}
+
+{% endblock %}
 </html>

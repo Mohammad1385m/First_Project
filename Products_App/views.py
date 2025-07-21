@@ -6,9 +6,9 @@ from Products_App.models import *
 # Create your views here.
 
 def products_list(request):
-    pros = Product_Model.objects.all().order_by("-id")
+    pros = Product_Model.objects.filter(is_active=True).order_by("-id")
     new_pros = pros[:3]
-    return render(request, "Products_Page_Template.html", {
+    return render(request, "shop.html", {
         "pros": pros,
         "new_pros": new_pros
     })
@@ -17,7 +17,7 @@ def products_list(request):
 def product_detail(request, slug):
     a_single_product = Product_Model.objects.filter(slug=slug).first()
     pro_color = Product_Color.objects.filter(product_model=a_single_product)
-    return render(request, "Product_Detail_Page_Template.html", {
+    return render(request, "singleProduct.html", {
         "a_s_p": a_single_product,
         "pro_color" : pro_color
     })

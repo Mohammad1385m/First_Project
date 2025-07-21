@@ -15,7 +15,7 @@ class Product_Category(models.Model):
         super().save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
-        return f"{self.title} - {self.is_active}"
+        return f"{self.title}"
 
     class Meta:
         verbose_name = "Category"
@@ -37,7 +37,7 @@ class Product_Model(models.Model):
         super().save(*args, force_insert=False, force_update=False, using=None, update_fields=None, )
 
     def __str__(self):
-        return f"{self.title} - {self.price} - {self.is_active}"
+        return f"{self.title} - {self.price}"
 
     class Meta:
         verbose_name = "Product Model"
