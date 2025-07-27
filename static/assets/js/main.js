@@ -387,7 +387,8 @@ const categories = {
                 </ul>
               </div>
   `],
-  cat2: [`<div>
+  cat2: [`
+<div>
   <a href="#" class="flex gap-x-2 items-center mb-5">
     <div class="w-fit min-w-fit text-primary-500 text-sm hover:text-primary-700 transition">
       لپ تاپ

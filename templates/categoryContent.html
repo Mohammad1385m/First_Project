@@ -1,7 +1,7 @@
 {% extends "Layout.html" %}
 
 {% block title %}
-    فروشگاه
+    {{ a_s_c.title }}
 {% endblock %}
 
 {% block css_code %}
@@ -30,109 +30,6 @@
                                   clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                    <div class="border border-zinc-100 h-fit rounded-2xl py-2 hover:shadow-sm transition-all">
-                        <button class="menu-toggle flex justify-between w-full py-3 px-4 rounded-2xl cursor-pointer">
-                            <span class="text-zinc-700 text-sm">دسته بندی</span>
-                            <img class="w-4 transition-transform opacity-80"
-                                 src="/static/assets/image/icons/arrowDown.svg" alt="">
-                        </button>
-                        <ul class="submenu hidden mt-2">
-                            <li>
-                                <button class="menu-toggle text-xs flex justify-between w-full py-2 px-4 text-zinc-700">
-                                    <a href="">طراحی گرافیک</a>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="menu-toggle text-xs flex justify-between w-full py-2 px-4 text-zinc-700">
-                                    <a href="">طراحی گرافیک</a>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="menu-toggle text-xs flex justify-between w-full py-2 px-4 text-zinc-700">
-                                    <a href="">طراحی گرافیک</a>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="menu-toggle text-xs flex justify-between w-full py-2 px-4 text-zinc-700">
-                                    <a href="">طراحی گرافیک</a>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="menu-toggle text-xs flex justify-between w-full py-2 px-4 text-zinc-700">
-                                    <a href="">طراحی گرافیک</a>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="menu-toggle text-xs flex justify-between w-full py-2 px-4 text-zinc-700">
-                                    <a href="">طراحی گرافیک</a>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="border border-zinc-100 h-fit rounded-2xl py-2 hover:shadow-sm transition-all">
-                        <button class="menu-toggle flex justify-between w-full py-3 px-4 rounded-2xl cursor-pointer">
-                            <span class="text-zinc-700 text-sm">برند ها</span>
-                            <img class="w-4 transition-transform opacity-80"
-                                 src="/static/assets/image/icons/arrowDown.svg" alt="">
-                        </button>
-                        <ul class="submenu hidden mt-2">
-                            <li>
-                                <div class="flex w-full items-center gap-x-2 py-1 px-4">
-                                    <input id="c1" type="checkbox" value=""
-                                           class="h-4 w-4 accent-primary-500 cursor-pointer rounded-xl border-gray-300 bg-gray-100">
-                                    <label for="c1" class="w-full cursor-pointer py-2 pl-4 text-zinc-600 text-xs">
-                    <span>
-                      کالای دیجیتال
-                    </span>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex w-full items-center gap-x-2 py-1 px-4">
-                                    <input id="c2" type="checkbox" value=""
-                                           class="h-4 w-4 accent-primary-500 cursor-pointer rounded-xl border-gray-300 bg-gray-100">
-                                    <label for="c2" class="w-full cursor-pointer py-2 pl-4 text-zinc-600 text-xs">
-                    <span>
-                      کالای دیجیتال
-                    </span>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex w-full items-center gap-x-2 py-1 px-4">
-                                    <input id="c3" type="checkbox" value=""
-                                           class="h-4 w-4 accent-primary-500 cursor-pointer rounded-xl border-gray-300 bg-gray-100">
-                                    <label for="c3" class="w-full cursor-pointer py-2 pl-4 text-zinc-600 text-xs">
-                    <span>
-                      کالای دیجیتال
-                    </span>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex w-full items-center gap-x-2 py-1 px-4">
-                                    <input id="c4" type="checkbox" value=""
-                                           class="h-4 w-4 accent-primary-500 cursor-pointer rounded-xl border-gray-300 bg-gray-100">
-                                    <label for="c4" class="w-full cursor-pointer py-2 pl-4 text-zinc-600 text-xs">
-                    <span>
-                      کالای دیجیتال
-                    </span>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex w-full items-center gap-x-2 py-1 px-4">
-                                    <input id="c5" type="checkbox" value=""
-                                           class="h-4 w-4 accent-primary-500 cursor-pointer rounded-xl border-gray-300 bg-gray-100">
-                                    <label for="c5" class="w-full cursor-pointer py-2 pl-4 text-zinc-600 text-xs">
-                    <span>
-                      کالای دیجیتال
-                    </span>
-                                    </label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="border border-zinc-100 h-fit rounded-2xl py-2 hover:shadow-sm transition-all">
                         <button class="menu-toggle flex justify-between w-full py-3 px-4 rounded-2xl cursor-pointer">
                             <span class="text-zinc-700 text-sm">فیلتر بر اساس قیمت</span>
@@ -201,7 +98,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                    {% for pro in pros %}
+                    {% for pro in p_i_c %}
                         <div class="p-2 md:p-4 hover:border-transparent hover:shadow-lg transition-shadow rounded-3xl border border-zinc-100 relative">
                             <a href="#">
                                 <svg class="absolute right-2 top-2 bg-white hover:bg-primary-500 hover:fill-white transition-all rounded-full p-2 border border-zinc-300 size-9"

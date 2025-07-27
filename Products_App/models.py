@@ -1,12 +1,16 @@
-from enum import unique
+from sys import maxsize
 
 from django.db import models
 
-
 # Create your models here.
 
+"""
+*****************************************################*****************************************
+*****************************************##  Category  ##*****************************************
+*****************************************################*****************************************
+"""
 class Product_Category(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField()
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
 
@@ -21,14 +25,40 @@ class Product_Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
 
+"""
+*****************************************###################*****************************************
+*****************************************##  SubCategory  ##*****************************************
+*****************************************###################*****************************************
+"""
+class Product_SubCategory(models.Model):
+    title = models.CharField()
+    category = models.ForeignKey(to=Product_Category, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
+    def save(self, *args, force_insert=False, force_update=False, using=None, update_fields=None):
+        self.slug = self.title.replace(" ", "_")
+        super().save(force_insert, force_update, using, update_fields)
+
+    def __str__(self):
+        return f"{self.title}"
+
+    class Meta:
+        verbose_name = "SubCategory"
+        verbose_name_plural = "SubCategories"
+
+"""
+*****************************************###############*****************************************
+*****************************************##  Product  ##*****************************************
+*****************************************###############*****************************************
+"""
 class Product_Model(models.Model):
     title = models.CharField()
     price = models.IntegerField()
     off = models.IntegerField(default=0)
-    description = models.TextField(null=True)
+    description = models.TextField()
     color = models.ManyToManyField(to="Product_Color")
-    category = models.ForeignKey(Product_Category, on_delete=models.CASCADE, null=True)
+    subcategory = models.ForeignKey(to=Product_SubCategory, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
 
@@ -39,10 +69,19 @@ class Product_Model(models.Model):
     def __str__(self):
         return f"{self.title} - {self.price}"
 
+    @property
+    def category(self):
+        return self.subcategory.category
+
     class Meta:
         verbose_name = "Product Model"
         verbose_name_plural = "Product Models"
 
+"""
+*****************************************#############*****************************************
+*****************************************##  Color  ##*****************************************
+*****************************************#############*****************************************
+"""
 class Product_Color(models.Model):
     color_name = models.CharField()
     hex_code = models.CharField()

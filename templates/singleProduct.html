@@ -1,14 +1,12 @@
 {% extends "Layout.html" %}
 
 {% block title %}
-    فروشگاه
+    {{ a_s_p.title }}
 {% endblock %}
 
 {% block css_code %}
     <link rel="stylesheet" href="/static/assets/css/main.css">
 {% endblock %}
-
-<body class="max-w-[1700px] mx-auto">
 
 {% block container %}
     <main class="mt-0 md:mt-8">
@@ -85,23 +83,24 @@
                 <!-- info -->
                 <div class="lg:w-5/12">
                     <div class="mb-7 text-xs flex flex-wrap space-y-2 md:space-y-0 items-center gap-x-2 opacity-90">
-                        <a href="" class="text-zinc-500 hover:text-primary-500 transition">
-                            کالای دیجیتال
+                        <a href="{% url 'category_content' a_s_p.subcategory.category.slug %}" class="text-zinc-500 hover:text-primary-500 transition">
+                            {{ a_s_p.subcategory.category.title }}
                         </a>
                         <svg class="size-3 fill-zinc-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                              fill="#3d3d3d" viewBox="0 0 256 256">
                             <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
                         </svg>
-                        <a href="" class="text-zinc-500 hover:text-primary-500 transition">
-                            {{ a_s_p.category.title }}
+                        <a href="{% url 'sub_category_content' a_s_p.subcategory.slug %}"
+                           class="text-zinc-500 hover:text-primary-500 transition">
+                            {{ a_s_p.subcategory.title }}
                         </a>
-                        {#                        <svg class="size-3 fill-zinc-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16"#}
-                        {#                             fill="#3d3d3d" viewBox="0 0 256 256">#}
-                        {#                            <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>#}
-                        {#                        </svg>#}
-                        {#                        <a class="text-primary-500" href="">#}
-                        {#                            موبایل آیفون 12pro max#}
-                        {#                        </a>#}
+                        <svg class="size-3 fill-zinc-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                             fill="#3d3d3d" viewBox="0 0 256 256">
+                            <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
+                        </svg>
+                        <a class="text-primary-500" href="">
+                            {{ a_s_p.title }}
+                        </a>
                     </div>
                     <div class="text-zinc-800 md:text-2xl font-semibold leading-7">
                         {{ a_s_p.title }}                    </div>
@@ -238,12 +237,12 @@
                                 رضایت از محصول:
                             </div>
                             <span>
-                95%
-              </span>
+                                95%
+                            </span>
                         </div>
                         <div class="flex flex-col justify-center py-5">
                             <div class="text-zinc-800 text-left">
-                                <span class="font-yekanBakhExtraBold text-3xl">17,462,000</span>
+                                <span class="font-yekanBakhExtraBold text-3xl">{{ a_s_p.price }}</span>
                                 <span class="text-xs">تومان</span>
                             </div>
                             <div class="text-xs text-red-400">
@@ -798,8 +797,6 @@
         </div>
     </main>
 {% endblock %}
-
-</body>
 
 {% block js %}
     <script src="/static/assets/js/swiper.min.js"></script>

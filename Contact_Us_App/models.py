@@ -8,9 +8,12 @@ class Contact_Us_Model(models.Model):
     email = models.EmailField()
     subject = models.CharField()
     message = models.TextField()
-    response = models.CharField(null=True, blank=True)
+    is_read = models.BooleanField(default=False)
+    response = models.TextField(null=True, blank=True)
+
     def __str__(self):
         return f"{self.name} - {self.email} - {self.subject}"
+
     class Meta:
         verbose_name = "Message"
         verbose_name_plural = "Messages"

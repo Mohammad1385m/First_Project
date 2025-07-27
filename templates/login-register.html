@@ -1,0 +1,95 @@
+{% extends "Layout.html" %}
+
+{% block title %}
+    ورود / ثبت نام
+{% endblock %}
+
+{% block css_code %}
+    <link rel="stylesheet" href="/static/assets/css/main.css">
+{% endblock %}
+
+{% block container %}
+    <main class="mt-0 md:mt-8">
+        <!-- contact us -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-8 mx-4 md:mx-32 mb-8 md:my-12 border border-zinc-200 rounded-2xl p-4 md:p-8">
+            <form class="space-y-4 md:space-y-6" method="post">
+                {% csrf_token %}
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        نام و نام خانوادگی:
+                    </p>
+                    {{ form.name }}
+                </div>
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        شماره تلفن:
+                    </p>
+                    {{ form.phone }}
+                </div>
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        ایمیل:
+                    </p>
+                    {{ form.email }}
+                </div>
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        موضوع:
+                    </p>
+                    {{ form.subject }}
+                </div>
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        پیام شما:
+                    </p>
+                    {{ form.message }}
+                </div>
+                <div>
+                    <input class="bg-gradient-to-bl from-primary-500 to-primary-400 hover:opacity-90 hover:shadow-lg transition rounded-xl py-2.5 md:py-3 px-10 md:px-14 text-sm text-white" type="button" value="ورود">
+                </div>
+            </form>
+            <form class="space-y-4 md:space-y-6" method="post">
+                {% csrf_token %}
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        نام و نام خانوادگی:
+                    </p>
+                    {{ form.name }}
+                </div>
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        شماره تلفن:
+                    </p>
+                    {{ form.phone }}
+                </div>
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        ایمیل:
+                    </p>
+                    {{ form.email }}
+                </div>
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        موضوع:
+                    </p>
+                    {{ form.subject }}
+                </div>
+                <div>
+                    <p class="text-xs text-zinc-600 pb-3 pr-2">
+                        پیام شما:
+                    </p>
+                    {{ form.message }}
+                </div>
+                <div>
+                    <input class="bg-gradient-to-bl from-primary-500 to-primary-400 hover:opacity-90 hover:shadow-lg transition rounded-xl py-2.5 md:py-3 px-10 md:px-14 text-sm text-white" type="button" value="ثبت نام">
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/assets/js/swiper.min.js"></script>
+    <script src="/static/assets/js/sliders.js"></script>
+    <script src="/static/assets/js/main.js"></script>
+{% endblock %}
