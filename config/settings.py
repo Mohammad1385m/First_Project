@@ -126,3 +126,20 @@ STATICFILES_DIRS = [BASE_DIR/"static"]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "mhmd.85.mohammad@gmail.com"
+EMAIL_HOST_PASSWORD = "krwi kiqc mrmr drin"
+EMAIL_PORT = "587"
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2
+SESSION_SAVE_EVERY_REQUEST = True
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "unique-snowflake",
+    }
+}

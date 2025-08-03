@@ -24,12 +24,6 @@
 <body>
 {% render_partial "Home_App.views.header_component" %}
 
-{#{% if messages %}#}
-{#    {% for message in messages %}#}
-{#        <div class="{{ message.tags }}" hidden="hidden" id="alert-message">{{ message }}</div>#}
-{#    {% endfor %}#}
-{#{% endif %}#}
-
 <div class="container">
 
     <!-- loading
@@ -54,32 +48,6 @@
 </div>
 
 {% render_partial "Home_App.views.footer_component" %}
-
-{#<script>#}
-{#    try {#}
-{#        let msg_div = document.querySelector("#alert-message")#}
-{#        if (msg_div.className === "success") {#}
-{#            swal.fire({#}
-{#                position: "center",#}
-{#                icon: msg_div.className,#}
-{#                title: msg_div.innerHTML,#}
-{#                showConfirmButton: False,#}
-{#                timer: 2000#}
-{#            });#}
-{#        } else if (msg_div.className === "error") {#}
-{#            swal.fire({#}
-{#                position: "center",#}
-{#                icon: msg_div.className,#}
-{#                title: msg_div.innerHTML,#}
-{#                showConfirmButton: false,#}
-{#                timer: 2000#}
-{#            });#}
-{#        }#}
-{#    } catch (e) {#}
-{#        console.log("e")#}
-{#    }#}
-{#</script>#}
-
 </body>
 
 {% block js %}

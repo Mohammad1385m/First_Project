@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-# from django.contrib import messages
 from django.urls import reverse
 from .models import *
 from .forms import *
@@ -17,7 +16,6 @@ def contact_us_view(request):
         form = Contact_Us_Form(request.POST)
         if form.is_valid():
             form.save()
-            # messages.success(request, "Your message has been sent")
             return redirect("home")
         else:
             return render(request, "contactUs.html", {

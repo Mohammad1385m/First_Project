@@ -1,0 +1,81 @@
+/* اضافه کردن استایل‌های OTP به فایل CSS موجود */
+
+.otp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.otp-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    direction: ltr;
+}
+
+.otp-inputs input {
+    width: 50px;
+    height: 60px;
+    text-align: center;
+    font-size: 24px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9fafc;
+    transition: all 0.3s ease;
+}
+
+.otp-inputs input:focus {
+    border-color: #4a90e2;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.phone-number {
+    font-weight: 600;
+    color: #4a90e2;
+}
+
+.timer {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.resend-link {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.resend-link a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.resend-link a:hover {
+    color: #9458e0;
+    text-decoration: underline;
+}
+
+.resend-link a.disabled {
+    color: #999;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+/* Responsive Design for OTP */
+@media (max-width: 600px) {
+    .otp-inputs {
+        gap: 5px;
+    }
+    
+    .otp-inputs input {
+        width: 40px;
+        height: 50px;
+        font-size: 20px;
+    }
+}

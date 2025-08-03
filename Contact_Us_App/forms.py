@@ -11,9 +11,10 @@ class Contact_Us_Form(forms.ModelForm):
                     "class": "rounded-2xl rounded-tr-sm text-sm text-zinc-600 w-full bg-[#f0f0f0] px-5 py-3.5 placeholder:text-zinc-400 placeholder:text-xs focus:outline-1 focus:outline-zinc-300", "value": "moha", "placeholder": "نام..."
                 }
             ),
-            "phone": forms.NumberInput(
+            "phone": forms.TextInput(
                 attrs={
-                    "class": "rounded-2xl rounded-tr-sm text-sm text-zinc-600 w-full bg-[#f0f0f0] px-5 py-3.5 placeholder:text-zinc-400 placeholder:text-xs focus:outline-1 focus:outline-zinc-300", "value": "09962381904", "placeholder": "شماره تلفن..."
+                    "class": "rounded-2xl rounded-tr-sm text-sm text-zinc-600 w-full bg-[#f0f0f0] px-5 py-3.5 placeholder:text-zinc-400 placeholder:text-xs focus:outline-1 focus:outline-zinc-300", "value": "09962381904", "placeholder": "شماره تلفن...",
+                    "pattern": "[0-9]+"
                 }
             ),
             "email": forms.EmailInput(

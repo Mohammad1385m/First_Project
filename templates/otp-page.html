@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyCourse - تأیید OTP</title>
+    <link rel="stylesheet" href="/static/assets/css/otp-style.css">
+    <link rel="stylesheet" href="/static/assets/css/login-style.css">
+    <link rel="stylesheet" href="/static/assets/css/register-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fab fa-python"></i>
+                <span>PyCourse Academy</span>
+            </div>
+            <h1>تأیید شماره موبایل</h1>
+            <p>کد تأیید ۶ رقمی ارسال شده به ایمیل <span class="phone-number">django-c****.com</span> را وارد کنید</p>
+            <div class="timer" id="timer">03:00</div>
+        </div>
+
+        <form class="otp-form" method="post">
+            {% csrf_token %}
+            <div class="otp-inputs">
+                <input type="text" id="otp1" name="otp1" maxlength="1" pattern="\d" inputmode="numeric" autofocus>
+                <input type="text" id="otp2" name="otp2" maxlength="1" pattern="\d" inputmode="numeric">
+                <input type="text" id="otp3" name="otp3" maxlength="1" pattern="\d" inputmode="numeric">
+                <input type="text" id="otp4" name="otp4" maxlength="1" pattern="\d" inputmode="numeric">
+                <input type="text" id="otp5" name="otp5" maxlength="1" pattern="\d" inputmode="numeric">
+                <input type="text" id="otp6" name="otp6" maxlength="1" pattern="\d" inputmode="numeric">
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span>تأیید کد</span>
+                <i class="fas fa-check"></i>
+            </button>
+
+            <div class="resend-link">
+                کد را دریافت نکردید؟ <a href="#" id="resend-otp">ارسال مجدد کد</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="/static/assets/js/otp-scripts.js"></script>
+</body>
+</html>
