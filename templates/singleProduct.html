@@ -50,33 +50,22 @@
                         <div class="flex gap-4 justify-center">
                             <div id="zoomBox"
                                  class="hidden absolute -left-56 top-0 md:size-64 bg-no-repeat bg-cover border-2 border-gray-300 rounded-md bg-white"></div>
-                            <div class="relative overflow-hidden group">
-                                <img id="mainImage" src="/static/assets/image/products/1.webp"
+                            <div class="relative overflow-hidden group" style="width: 300px; height: 300px">
+                                <img id="mainImage" src="{{a_s_p.main_image.url}}"
                                      class="w-full max-w-96 object-cover rounded-lg"
-                                     alt="عکس محصول">
+                                     alt="{{ a_s_p.title }}">
                                 <div id="zoomLens"
                                      class="hidden absolute w-20 h-20 bg-gray-300 opacity-30 pointer-events-none"></div>
                             </div>
                         </div>
                         <div class="flex justify-start gap-2 mt-4 overflow-x-auto">
-                            <img src="/static/assets/image/products/1.webp"
+                            {% for p_image in pro_extra_images %}
+                            	<div class="flex justify-start gap-2 mt-4 overflow-x-auto" style="width: 80px; height: 80px">
+                                <img src="{{ p_image.image.url }}"
                                  class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
-                                 onclick="changeImage(this)">
-                            <img src="/static/assets/image/products/2.webp"
-                                 class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
-                                 onclick="changeImage(this)">
-                            <img src="/static/assets/image/products/1.webp"
-                                 class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
-                                 onclick="changeImage(this)">
-                            <img src="/static/assets/image/products/1.webp"
-                                 class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
-                                 onclick="changeImage(this)">
-                            <img src="/static/assets/image/products/1.webp"
-                                 class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
-                                 onclick="changeImage(this)">
-                            <img src="/static/assets/image/products/1.webp"
-                                 class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
-                                 onclick="changeImage(this)">
+                                 onclick="swapImage(this)">
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

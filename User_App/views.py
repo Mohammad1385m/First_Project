@@ -17,7 +17,7 @@ from utils.utils import *
 
 class Login_Register(View):
     def get(self, request):
-        register_form = Register_Form
+        register_form = Register_Form()
         login_form = Login_Form()
         return render(request, "login-register.html", {
             "register_form": register_form,
@@ -45,17 +45,17 @@ class Login_Register(View):
                     "timestamp": timezone.now().timestamp()
                 }
                 cache_key = f"otp-{token}"
-                send_otp(subject="Account Activation", to=email, context={"username": username, "otp": otp}, template_name="templates.send_otp")
+                send_otp(subject="Account Activation", to=email, context={"username": username, "otp": otp}, template_name="send_otp.html")
                 cache.set(cache_key, cached_data, timeout=180)
                 return redirect(reverse("otp", args=[token]))
 
         elif "login" in request.POST:
-            print("mmmmmmmmmmmm")
+            print("runs login form")
             register_form = Register_Form()
             login_form = Login_Form(request.POST)
 
             if login_form.is_valid():
-                print("form valid")
+                print("form is valid")
                 username = login_form.cleaned_data.get("username")
                 email = login_form.cleaned_data.get("email")
                 password = login_form.cleaned_data.get("password")
@@ -68,7 +68,7 @@ class Login_Register(View):
                         login(request, user)
                         return redirect("home")
             else:
-                print("dfghkbvbm,,n")
+                print("is not valid")
 
         return render(request, "login-register.html", {
             "register_form": register_form,
