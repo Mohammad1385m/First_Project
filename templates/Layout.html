@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/static/assets/image/fav.png">
+    <script src="/static/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
     <title>
         {% block title %}
@@ -17,7 +18,7 @@
     </title>
 
     {% block css_code %}
-        <link rel="stylesheet" href="/static/assets/css/main.css">
+        <link rel="stylesheet" href="/static/assets/sweetalert2/dist/sweetalert2.min.css">
     {% endblock %}
 </head>
 
@@ -25,14 +26,13 @@
 
 {% if messages %}
     {% for message in messages %}
-        <div class="{{ message.tag }}" hidden="hidden" id="alert-message">{{ message }}</div>
+        <div class="{{ message.tags }}" hidden="hidden" id="alert-message">{{ message }}</div>
     {% endfor %}
 {% endif %}
 
 {% render_partial "Home_App.views.header_component" %}
 
 <div class="container">
-
     <!-- loading
     <div id="loading"
          class="z-50 fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-bl from-zinc-50 to-zinc-100 transition-opacity duration-700">
@@ -59,14 +59,14 @@
 
 <script>
     try {
-        let msg_div = document.querySelector("#message-alert")
+        let msg_div = document.querySelector("#alert-message")
         if (msg_div.className === "success") {
             Swal.fire({
                 position: "center",
                 icon: msg_div.className,
                 title: msg_div.innerHTML,
                 showConfirmButton: false,
-                timer:2000
+                timer: 2000
             });
         } else if (msg_div.className === "error") {
             Swal.fire({
@@ -74,7 +74,7 @@
                 icon: msg_div.className,
                 title: msg_div.innerHTML,
                 showConfirmButton: false,
-                timer:2000
+                timer: 2000
             });
         } else if (msg_div.className === "warning") {
             Swal.fire({
@@ -82,16 +82,13 @@
                 icon: msg_div.className,
                 title: msg_div.innerHTML,
                 showConfirmButton: false,
-                timer:2000
+                timer: 2000
             });
         }
     } catch (error) {
         console.log("e")
     }
 </script>
-
-{#<script src="/node_modules/sweetalert2"></script>#}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 {% block js %}
 

@@ -11,7 +11,6 @@ class Home_View(View):
         context = {
             "products": self.product_list_in_slider1()
         }
-        # messages.success(request, "Home View Page")
         return render(request, "index.html", context)
 
     def product_list_in_slider1(self):
@@ -19,7 +18,7 @@ class Home_View(View):
         return products_in_slider_1
 
 def show_message(request):
-    # messages.success(request, "Home View Page")
+    messages.success(request, "Home View Page")
     return redirect("home")
 
 def header_component(request):

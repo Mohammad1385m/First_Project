@@ -1,5 +1,6 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.hashers import make_password
+from django.contrib.messages.context_processors import messages
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -11,7 +12,7 @@ from services.email_service.otp_email import send_otp
 from .forms import *
 from .models import *
 from utils.utils import *
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -125,4 +126,5 @@ class Otp_View(View):
 
 def user_logout(request):
     logout(request)
+    messages.success(request, "You have been logged out.")
     return redirect("home")

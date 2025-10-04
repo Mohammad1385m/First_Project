@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Products_App',
     'User_App',
     'Contact_Us_App',
+    'Blog_App'
 ]
 
 MIDDLEWARE = [
@@ -122,8 +123,7 @@ MEDIA_URL = '/Uploads/'
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR/"static"]
-
+STATICFILES_DIRS = [BASE_DIR / "static"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -134,7 +134,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "mhmd.85.mohammad@gmail.com"
 EMAIL_HOST_PASSWORD = "krwi kiqc mrmr drin"
-EMAIL_PORT = "587"
+EMAIL_PORT = 587
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2
 SESSION_SAVE_EVERY_REQUEST = True
