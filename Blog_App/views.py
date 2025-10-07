@@ -15,6 +15,8 @@ class Blog_List_View(View):
 class Blog_Detail_View(View):
     def get(self, request, slug):
         a_single_blog = Blog_Model.objects.filter(slug=slug).first()
+        a_s_b_contents = Block_Content_Model.objects.filter(blog=a_single_blog).order_by("order")
         return render(request, "blogSingle.html", {
-            "a_s_l" : a_single_blog
+            "a_s_b" : a_single_blog,
+            "contents" : a_s_b_contents
         })

@@ -1,22 +1,21 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
+
+User = settings.AUTH_USER_MODEL
 
 class Blog_Model(models.Model):
     title = models.CharField()
     image = models.ImageField(upload_to="blogs/images/")
     short_description = models.TextField(max_length=100)
     create_at = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(null=True, blank=True)
+    author = models.ForeignKey(to=User, on_delete=models.CASCADE,null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True, allow_unicode=True)
     is_published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
-
-    def save(self, *args, force_insert=False, force_update=False, using=None, update_fields=None):
-        self.slug = self.title.replace(" ", "_")
-        super().save(*args, force_insert=False, force_update=False, using=None, update_fields=None)
-
 
 class Block_Content_Model(models.Model):
     BLOCK_TYPES = (
@@ -28,7 +27,7 @@ class Block_Content_Model(models.Model):
         ("alert_box", "Alert Box"),
         ("end_box", "End Box"),
     )
-    blog = models.ForeignKey(to=Blog_Model, on_delete=models.CASCADE)
+    blog = models.ForeignKey(to=Blog_Model, on_delete=models.CASCADE, related_name="contents")
     block_type = models.CharField(choices=BLOCK_TYPES)
     order = models.PositiveIntegerField()
     text = models.TextField(null=True, blank=True)
