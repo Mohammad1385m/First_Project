@@ -51,7 +51,7 @@
                             <div id="zoomBox"
                                  class="hidden absolute -left-56 top-0 md:size-64 bg-no-repeat bg-cover border-2 border-gray-300 rounded-md bg-white"></div>
                             <div class="relative overflow-hidden group" style="width: 300px; height: 300px">
-                                <img id="mainImage" src="{{a_s_p.main_image.url}}"
+                                <img id="mainImage" src="{{ a_s_p.main_image.url }}"
                                      class="w-full max-w-96 object-cover rounded-lg"
                                      alt="{{ a_s_p.title }}">
                                 <div id="zoomLens"
@@ -59,11 +59,18 @@
                             </div>
                         </div>
                         <div class="flex justify-start gap-2 mt-4 overflow-x-auto">
+                            <div class="flex justify-start gap-2 mt-4 overflow-x-auto"
+                                 style="width: 80px; height: 80px">
+                                <img src="{{ a_s_p.main_image.url }}"
+                                     class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
+                                     onclick="changeImage(this)">
+                            </div>
                             {% for p_image in pro_extra_images %}
-                            	<div class="flex justify-start gap-2 mt-4 overflow-x-auto" style="width: 80px; height: 80px">
-                                <img src="{{ p_image.image.url }}"
-                                 class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
-                                 onclick="swapImage(this)">
+                                <div class="flex justify-start gap-2 mt-4 overflow-x-auto"
+                                     style="width: 80px; height: 80px">
+                                    <img src="{{ p_image.image.url }}"
+                                         class="w-20 h-20 object-cover rounded-md cursor-pointer border border-zinc-200 hover:border-zinc-400 opacity-80 hover:opacity-100 transition-all"
+                                         onclick="changeImage(this)">
                                 </div>
                             {% endfor %}
                         </div>
@@ -72,7 +79,8 @@
                 <!-- info -->
                 <div class="lg:w-5/12">
                     <div class="mb-7 text-xs flex flex-wrap space-y-2 md:space-y-0 items-center gap-x-2 opacity-90">
-                        <a href="{% url 'category_content' a_s_p.subcategory.category.slug %}" class="text-zinc-500 hover:text-primary-500 transition">
+                        <a href="{% url 'category_content' a_s_p.subcategory.category.slug %}"
+                           class="text-zinc-500 hover:text-primary-500 transition">
                             {{ a_s_p.subcategory.category.title }}
                         </a>
                         <svg class="size-3 fill-zinc-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16"

@@ -16,7 +16,9 @@ class Blog_Detail_View(View):
     def get(self, request, slug):
         a_single_blog = Blog_Model.objects.filter(slug=slug).first()
         a_s_b_contents = Block_Content_Model.objects.filter(blog=a_single_blog).order_by("order")
+        a_s_b_comments = Blog_Comment.objects.filter(blog=a_single_blog, is_published=True, is_active=True).order_by("-create_at")
         return render(request, "blogSingle.html", {
             "a_s_b" : a_single_blog,
-            "contents" : a_s_b_contents
+            "contents" : a_s_b_contents,
+            "comments" : a_s_b_comments
         })

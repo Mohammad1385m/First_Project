@@ -155,3 +155,17 @@ git add .
 git commit -m "Initial commit"
 git push origin master
 '''
+
+"""
+Super User:
+1-[
+username: mohammad
+email: mhmd.85.mohammad@gmail.com
+password: mAtena85
+]
+2-[
+username: mhmd
+email: mhmd@gmail.com
+password: m12345
+]
+"""

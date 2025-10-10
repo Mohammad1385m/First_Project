@@ -3,12 +3,6 @@ from django.db import models
 
 # Create your models here.
 
-"""
-Super User:
-mhmd (m12345)
-"""
-
-
 class User_Model(AbstractUser):
     email = models.EmailField(unique=True, null=False, blank=False)
     phone = models.CharField(null=True)

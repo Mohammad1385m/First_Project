@@ -7,6 +7,7 @@
 
 {% block css_code %}
     <link rel="stylesheet" href="/static/assets/css/main.css">
+    <link rel="stylesheet" href="/static/assets/css/blogSingle.css">
 {% endblock %}
 
 {% block container %}
@@ -182,7 +183,7 @@
                                  fill="#000000" viewBox="0 0 256 256">
                                 <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"></path>
                             </svg>
-                            نوشته شده توسط {{ a_s_b.author}}
+                            نوشته شده توسط {{ a_s_b.author }}
                         </div>
                         <div class="text-xs flex gap-x-1 items-center text-zinc-400">
                             <svg class="fill-zinc-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -229,12 +230,171 @@
                                     {{ content.text }}
                                 </p>
                             {% elif content.block_type == "image_box" %}
-                                <img class="w-72 h-72 md:h-96 rounded-3xl object-cover object-center mb-3.5" src="{{ content.image.url }}" alt="{{ content.caption }}">
+                                <img class="w-72 h-72 md:h-96 rounded-3xl object-cover object-center mb-3.5"
+                                     src="{{ content.image.url }}" alt="{{ content.caption }}">
                             {% endif %}
                         </div>
                     {% endfor %}
-
-
+                </div>
+                <div class="p-4" id="comments">
+                    <div class="mt-2 flex gap-x-4 items-center border-b border-zinc-400 pb-3">
+                        <p class="text-zinc-800 md:text-lg mb-1 mt-4">
+                            دیدگاه ها
+                        </p>
+                    </div>
+                    <div class="lg:flex gap-5">
+                        <div class="lg:w-3/12 py-5">
+                            <div class="mt-4 mb-2 text-sm text-zinc-700">
+                                شما هم دیدگاه خود را ثبت کنید
+                            </div>
+                            {% if request.user.is_authenticated %}
+                                <ul class="grid my-3 gap-5 grid-cols-2">
+                                    <li>
+                                        <input type="radio" id="yes" name="hosting" value="yes" class="hidden peer"
+                                               required="">
+                                        <label for="yes"
+                                               class="inline-flex items-center justify-center w-full px-2 py-3 text-gray-600 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-green-400 peer-checked:text-green-500 hover:text-gray-600 hover:bg-gray-100">
+                                            <div class="flex items-center gap-x-1">
+                                                <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                     width="22"
+                                                     height="22" fill="" viewBox="0 0 256 256">
+                                                    <path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path>
+                                                </svg>
+                                                <div class="text-sm">پیشنهاد میشود</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="no" name="hosting" value="no" class="hidden peer"
+                                               required="">
+                                        <label for="no"
+                                               class="inline-flex items-center justify-center w-full px-2 py-3 text-gray-600 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-red-400 peer-checked:text-red-400 hover:text-gray-600 hover:bg-gray-100">
+                                            <div class="flex items-center gap-x-1">
+                                                <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="22"
+                                                     height="22"
+                                                     fill="" viewBox="0 0 256 256">
+                                                    <path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path>
+                                                </svg>
+                                                <div class="text-sm">پیشنهاد نمیشود</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                                <textarea placeholder="متن دیدگاه" name="mailTicket" cols="30" rows="7"
+                                          class="rounded-2xl rounded-tr-sm text-sm text-zinc-600 w-full bg-white border border-zinc-200 px-5 py-3.5 placeholder:text-zinc-400 placeholder:text-xs focus:outline-1 focus:outline-zinc-300"></textarea>
+                                <button class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-primary-500 to-primary-400 hover:opacity-90 transition text-gray-100 rounded-lg">
+                                    ارسال دیدگاه
+                                </button>
+                            {% else %}
+                                <div id="loginChecker">
+                                    <ul class="grid my-3 gap-5 grid-cols-2">
+                                        <li>
+                                            <input type="radio" id="yes" name="hosting" value="yes" class="hidden peer"
+                                                   required="">
+                                            <label for="yes"
+                                                   class="inline-flex items-center justify-center w-full px-2 py-3 text-gray-600 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-green-400 peer-checked:text-green-500 hover:text-gray-600 hover:bg-gray-100">
+                                                <div class="flex items-center gap-x-1">
+                                                    <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                         width="22" height="22" fill=""
+                                                         viewBox="0 0 256 256">
+                                                        <path
+                                                                d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z">
+                                                        </path>
+                                                    </svg>
+                                                    <div class="text-sm">پیشنهاد میشود</div>
+                                                </div>
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" id="no" name="hosting" value="no" class="hidden peer"
+                                                   required="">
+                                            <label for="no"
+                                                   class="inline-flex items-center justify-center w-full px-2 py-3 text-gray-600 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-red-400 peer-checked:text-red-400 hover:text-gray-600 hover:bg-gray-100">
+                                                <div class="flex items-center gap-x-1">
+                                                    <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg"
+                                                         width="22" height="22" fill=""
+                                                         viewBox="0 0 256 256">
+                                                        <path
+                                                                d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z">
+                                                        </path>
+                                                    </svg>
+                                                    <div class="text-sm">پیشنهاد نمیشود</div>
+                                                </div>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                    <textarea placeholder="متن دیدگاه" name="mailTicket" cols="30" rows="7"
+                                              class="rounded-2xl rounded-tr-sm text-sm text-zinc-600 w-full bg-white border border-zinc-200 px-5 py-3.5 placeholder:text-zinc-400 placeholder:text-xs focus:outline-1 focus:outline-zinc-300"></textarea>
+                                    <button
+                                            class="hidden lg:block mx-auto cursor-pointer w-full px-2 py-3 text-sm bg-gradient-to-bl from-primary-500 to-primary-400 hover:opacity-90 transition text-gray-100 rounded-lg">
+                                        ارسال دیدگاه
+                                    </button>
+                                    <div id="blockerDiv">
+                                        ابتدا باید وارد <a href="{% url 'login_register' %}">حساب کاربری</a> خود شوید
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="lg:w-9/12 divide-y-2 divide-zinc-300">
+                            {% for comment in comments %}
+                                <div class="px-2 pt-5">
+                                    <div class="flex items-center gap-x-1 pt-3">
+                                        <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg" width="22"
+                                             height="22"
+                                             fill=""
+                                             viewBox="0 0 256 256">
+                                            <path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path>
+                                        </svg>
+                                        <div class="text-sm text-red-500">مفید بود</div>
+                                    </div>
+                                    <div class="mt-2 flex gap-x-4 items-center border-b border-zinc-200 pb-3">
+                                        <div class="text-xs text-zinc-600">
+                                            {{ comment.create_at|jalali_date }}
+                                        </div>
+                                        <div class="text-xs text-zinc-600">
+                                            {{ comment.user.username }}
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 text-zinc-600 text-sm">
+                                        {{ comment.text }}
+                                    </div>
+                                    <div class="flex justify-end items-center gap-x-5 mt-3">
+                                        <div class="text-sm text-zinc-400">
+                                            آیا این دیدگاه برایتان مفید بود؟
+                                        </div>
+                                        <ul class="grid my-3 gap-5 grid-cols-2">
+                                            <li>
+                                                <input type="radio" id="isgood2" name="what2" value="isgood2"
+                                                       class="hidden peer"
+                                                       required="">
+                                                <label for="isgood2"
+                                                       class="inline-flex p-2 border border-gray-200 rounded-lg cursor-pointer peer-checked:border-green-400 hover:bg-gray-100">
+                                                    <svg class="fill-green-500" xmlns="http://www.w3.org/2000/svg"
+                                                         width="22"
+                                                         height="22" fill="" viewBox="0 0 256 256">
+                                                        <path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path>
+                                                    </svg>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="isbad2" name="what2" value="isbad2"
+                                                       class="hidden peer"
+                                                       required="">
+                                                <label for="isbad2"
+                                                       class="inline-flex p-2 border border-gray-200 rounded-lg cursor-pointer peer-checked:border-red-400 hover:bg-gray-100">
+                                                    <svg class="fill-red-500" xmlns="http://www.w3.org/2000/svg"
+                                                         width="22"
+                                                         height="22" fill="" viewBox="0 0 256 256">
+                                                        <path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path>
+                                                    </svg>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
