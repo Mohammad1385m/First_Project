@@ -1,5 +1,5 @@
 {% extends "Layout.html" %}
-
+{% load poll_extras %}
 {% block title %}
     {{ a_s_p.title }}
 {% endblock %}
@@ -200,9 +200,7 @@
                                         </div>
                                     </label>
                                 </li>
-
                             {% endfor %}
-
                         </ul>
                     </div>
                     <div class="p-3 border border-zinc-300 rounded-xl mx-auto divide-y divide-zinc-200">
@@ -238,10 +236,21 @@
                             </span>
                         </div>
                         <div class="flex flex-col justify-center py-5">
-                            <div class="text-zinc-800 text-left">
+                            {% if a_s_p.off > 0 %}
+                                <div class="text-left text-zinc-400">
+                                    <span class="font-yekanBakhSemiBold text-xl line-through">{{ a_s_p.price }}</span>
+                                    <span class="text-xs">تومان</span>
+                                </div>
+                                <div class="text-zinc-800 text-left">
+                                <span class="font-yekanBakhExtraBold text-3xl">{{ a_s_p.price|discounted_value:a_s_p.off }}</span>
+                                <span class="text-xs">تومان</span>
+                            </div>
+                            {% else %}
+                                <div class="text-zinc-800 text-left">
                                 <span class="font-yekanBakhExtraBold text-3xl">{{ a_s_p.price }}</span>
                                 <span class="text-xs">تومان</span>
                             </div>
+                            {% endif %}
                             <div class="text-xs text-red-400">
                                 تنها 2 عدد در انبار باقی مانده
                             </div>

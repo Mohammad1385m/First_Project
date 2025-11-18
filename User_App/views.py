@@ -46,7 +46,7 @@ class Login_Register(View):
                     "timestamp": timezone.now().timestamp()
                 }
                 cache_key = f"otp-{token}"
-                send_otp(subject="Account Activation", to=email, context={"username": username, "otp": otp}, template_name="send_otp.html")
+                send_otp(subject="Account Activation", to=email, context={"username": username, "otp": otp}, template_name="send_otp_email.html")
                 cache.set(cache_key, cached_data, timeout=180)
                 return redirect(reverse("otp", args=[token]))
 

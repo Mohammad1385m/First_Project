@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import locale
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,6 +148,11 @@ CACHES = {
         "LOCATION": "unique-snowflake",
     }
 }
+
+if sys.platform.startswith('win32'):
+    locale.setlocale(locale.LC_ALL, "Persian_Iran.UTF-8")
+else:
+    locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
 
 '''
 Upload To Git:

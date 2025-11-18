@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 class User_Model(AbstractUser):
-    email = models.EmailField(unique=True, null=False, blank=False)
+    email = models.EmailField(null=False, blank=False)
     phone = models.CharField(null=True)
     avtar = models.ImageField(upload_to="user_avatars/%y%m%d", null=True, blank=True)
     token = models.CharField(null=True, blank=True)

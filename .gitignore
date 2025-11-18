@@ -1,0 +1,88 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+wheels/
+
+# Virtual environments
+venv/
+env/
+ENV/
+*.env
+*.venv
+
+# =========================
+# Django
+# =========================
+
+# SQLite database (if used)
+db.sqlite3
+db.sqlite3-journal
+
+# Django logs
+*.log
+
+# Django static/media files (generated)
+staticfiles/
+static/
+media/
+
+# Local settings
+*.local_settings.py
+local_settings.py
+
+# Django secret key files
+secret_key.txt
+
+# =========================
+# Environment variables
+# =========================
+*.env
+.env.*
+!env.example
+
+# =========================
+# IDEs / Editors
+# =========================
+
+# VSCode
+.vscode/
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+
+# =========================
+# OS / General
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Node (if using tailwind/npm)
+# =========================
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# =========================
+# Coverage / Testing
+# =========================
+htmlcov/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+junitxml/
+
+Theme
+Uploads

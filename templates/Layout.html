@@ -30,10 +30,7 @@
     {% endfor %}
 {% endif %}
 
-{% render_partial "Home_App.views.header_component" %}
-
-<div class="container">
-    <!-- loading
+<!-- loading -->
     <div id="loading"
          class="z-50 fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-bl from-zinc-50 to-zinc-100 transition-opacity duration-700">
         <div class="wrapper">
@@ -48,11 +45,19 @@
             <img class="max-w-20 md:max-w-36" src="/static/assets/image/logo.png" alt=""/>
             <div class="text-xl md:text-3xl font-yekanBakhExtraBold text-zinc-800">فروشگاه آنلاین دیجیتو</div>
         </div>
-    </div> -->
+    </div>
+
+<!-- progress bar -->
+<div id="progressBar"></div>
+
+{% render_partial "Home_App.views.header_component" %}
+
+<div class="container">
 
     {% block container %}
 
     {% endblock %}
+
 </div>
 
 {% render_partial "Home_App.views.footer_component" %}
@@ -91,7 +96,7 @@
 </script>
 
 {% block js %}
-
+<script src="/static/assets/js/blogSingleScripts.js"></script>
 {% endblock %}
 
 </body>
