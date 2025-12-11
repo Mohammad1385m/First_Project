@@ -25,13 +25,12 @@ class Product_Category(models.Model):
         verbose_name_plural = "Categories"
 
 """
-*****************************************###################*****************************************
-*****************************************##  SubCategory  ##*****************************************
-*****************************************###################*****************************************
+********************************************#############********************************************
+********************************************##  Brand  ##********************************************
+********************************************#############********************************************
 """
-class Product_SubCategory(models.Model):
+class BrandModel(models.Model):
     title = models.CharField()
-    category = models.ManyToManyField(to=Product_Category)
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
 
@@ -43,9 +42,8 @@ class Product_SubCategory(models.Model):
         return f"{self.title}"
 
     class Meta:
-        verbose_name = "SubCategory"
-        verbose_name_plural = "SubCategories"
-
+        verbose_name = "Brand"
+        verbose_name_plural = "Brands"
 """
 *****************************************###############*****************************************
 *****************************************##  Product  ##*****************************************
@@ -58,7 +56,9 @@ class Product_Model(models.Model):
     description = models.TextField()
     color = models.ManyToManyField(to="Product_Color")
     main_image = models.ImageField(upload_to="products/", null=True, blank=True)
-    subcategory = models.ForeignKey(to=Product_SubCategory, on_delete=models.CASCADE)
+    # subcategory = models.ForeignKey(to=Product_SubCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(to=Product_Category, on_delete=models.CASCADE)
+    brand = models.ForeignKey(to=BrandModel, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
 
@@ -68,10 +68,6 @@ class Product_Model(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.price}"
-
-    @property
-    def category(self):
-        return self.subcategory.category
 
     class Meta:
         verbose_name = "Product Model"

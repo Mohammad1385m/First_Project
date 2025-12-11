@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class SiteSettings(models.Model):
+class SiteSettingsModel(models.Model):
     title = models.CharField()
     logo = models.ImageField(upload_to="logo/")
     support_phone = models.CharField()
@@ -19,7 +19,11 @@ class SiteSettings(models.Model):
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.id
+        return f"Site Settings #{self.id}"
+
+
+def slider_image_upload_path(slider_type, filename):
+    return f"sliders/{slider_type}/{filename}"
 
 class Sliders(models.Model):
     SLIDER_TYPE = (
@@ -33,8 +37,10 @@ class Sliders(models.Model):
         ("popular_products_slider", "Popular-Products Slider"),
     )
     slider_type = models.CharField(choices=SLIDER_TYPE)
-    image = models.ImageField(upload_to="sliders/")
+    image = models.ImageField(upload_to=slider_image_upload_path)
     url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.slider_type} - {self.id}"
+
+

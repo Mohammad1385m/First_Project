@@ -54,13 +54,13 @@
                                  src="/static/assets/image/icons/arrowDown.svg" alt="">
                         </button>
                         <ul class="submenu hidden mt-2">
-                            {% for subcategory in subcategories %}
+                            {% for brand in brands %}
                                 <li>
                                     <div class="flex w-full items-center gap-x-2 py-1 px-4">
                                         <input id="c1" type="checkbox" value=""
                                                class="h-4 w-4 accent-primary-500 cursor-pointer rounded-xl border-gray-300 bg-gray-100">
                                         <label for="c1" class="w-full cursor-pointer py-2 pl-4 text-zinc-600 text-xs">
-                                            <span>{{ subcategory.title }}</span>
+                                            <span>{{ brand.title }}</span>
                                         </label>
                                     </div>
                                 </li>

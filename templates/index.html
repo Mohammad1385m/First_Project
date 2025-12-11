@@ -14,26 +14,12 @@
         <div class="px-2 md:px-12">
             <div class="swiper heroSlider rounded-2xl md:rounded-4xl relative">
                 <div class="swiper-wrapper">
-                    <a href="" class="swiper-slide">
-                        <img class="w-full h-60 md:h-96 object-cover object-bottom"
-                             src="/static/assets/image/heroSlider/1.webp" alt="">
-                    </a>
-                    <a href="" class="swiper-slide">
-                        <img class="w-full h-60 md:h-96 object-cover object-bottom"
-                             src="/static/assets/image/heroSlider/2.webp" alt="">
-                    </a>
-                    <a href="" class="swiper-slide">
-                        <img class="w-full h-60 md:h-96 object-cover object-bottom"
-                             src="/static/assets/image/heroSlider/3.webp" alt="">
-                    </a>
-                    <a href="" class="swiper-slide">
-                        <img class="w-full h-60 md:h-96 object-cover object-bottom"
-                             src="/static/assets/image/heroSlider/4.webp" alt="">
-                    </a>
-                    <a href="" class="swiper-slide">
-                        <img class="w-full h-60 md:h-96 object-cover object-bottom"
-                             src="/static/assets/image/heroSlider/5.webp" alt="">
-                    </a>
+                    {% for image in main_slider_content %}
+                        <a href="" class="swiper-slide">
+                            <img class="w-full h-60 md:h-96 object-cover object-bottom"
+                                 src="{{ image.image.url }}" alt="{{ image.id }}">
+                        </a>
+                    {% endfor %}
                 </div>
                 <svg class="absolute -left-2 rotate-180 top-14 z-10 w-auto hidden md:block" width="76" height="285"
                      viewBox="0 0 76 285" fill="none" xmlns="http://www.w3.org/2000/svg">

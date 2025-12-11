@@ -15,7 +15,8 @@
                 <div class="p-5 flex flex-col gap-y-3 justify-center items-center">
                     <!-- logo -->
                     <a href="{% url 'home' %}">
-                        <img src="/static/assets/image/logo.png" class="max-w-24 md:max-w-32 h-fit" alt="">
+                        <img src="{{ site_settings.logo.url }}" class="max-w-24 md:max-w-32 h-fit"
+                             alt="{{ site_settings.title }}">
                     </a>
                     <!-- seacrh -->
                     <div class="relative block">
@@ -318,14 +319,15 @@
                         همین حالا با پشتیبانی تماس بگیر
                     </div>
                     <a href="tel:05144556677" class="text-primary-500 flex text-xs lg:text-base gap-x-1 items-start">
-                        051-44556677
+                        {{ site_settings.support_phone }}
                         <img class="w-3 lg:w-5" src="/static/assets/image/icons/headphones.svg" alt="">
                     </a>
                 </div>
             </div>
             <!-- logo -->
             <a href="/">
-                <img src="/static/assets/image/logo.png" class="max-w-24 md:max-w-32 h-fit" alt="">
+                <img src="{{ site_settings.logo.url }}" class="max-w-24 md:max-w-32 h-fit"
+                     alt="{{ site_settings.title }}">
             </a>
             <!-- empty -->
             <div class="md:hidden size-8">
@@ -348,7 +350,7 @@
                 |
             </div>
             <a href="tel:05144556677" class="text-primary-500 flex text-xs lg:text-base gap-x-1 items-start">
-                051-44556677
+                {{ site_settings.support_phone }}
                 <img class="w-3 lg:w-5" src="/static/assets/image/icons/headphones.svg" alt="">
             </a>
         </div>
@@ -398,7 +400,7 @@
                                             <path class="stroke-gray-600 group-hover/cat:stroke-primary-500 transition"
                                                   d="M15.25 2.75H8.75C7.09315 2.75 5.75 4.09315 5.75 5.75V18.25C5.75 19.9069 7.09315 21.25 8.75 21.25H15.25C16.9069 21.25 18.25 19.9069 18.25 18.25V5.75C18.25 4.09315 16.9069 2.75 15.25 2.75Z"
                                                   stroke="" stroke-width="1.5" stroke-linecap="round"
-                                          stroke-linejoin="round"></path>
+                                                  stroke-linejoin="round"></path>
                                             <path class="stroke-gray-600 group-hover/cat:stroke-primary-500 transition"
                                                   d="M11 17.75H13" stroke="" stroke-width="1.5" stroke-linecap="round"
                                                   stroke-linejoin="round"></path>
@@ -409,7 +411,7 @@
                             {% endfor %}
                         </ul>
                         <div class="w-2/3 p-4 grid grid-cols-2 xl:grid-cols-3 gap-y-5 gap-x-10"
-                             id="subcategory-container">
+                             id="brand-container">
                             <div>
                                 <a href="#" class="flex gap-x-2 items-center mb-5">
                                     <div class="w-fit min-w-fit text-primary-500 text-sm hover:text-primary-700 transition">

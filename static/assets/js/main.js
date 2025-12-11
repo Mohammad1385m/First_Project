@@ -115,12 +115,12 @@ function onSubmit(e){
 }
 ///////////////////////////////////////// category header desktop
 const categories = document.querySelectorAll(".category-item");
-  const subcategories = document.querySelectorAll(".subcategory-item");
+  const brands = document.querySelectorAll(".brand-item");
 
   categories.forEach(cat => {
     cat.addEventListener("mouseenter", () => {
       const category = cat.getAttribute("data-category");
-      subcategories.forEach(sub => {
+      brands.forEach(sub => {
         sub.classList.add("hidden");
         if (sub.getAttribute("data-parent") === category) {
           sub.classList.remove("hidden");

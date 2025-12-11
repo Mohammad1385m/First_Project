@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'Contact_Us_App',
     'Blog_App',
     'Site_Settings_App',
+    'Order_App'
 ]
 
 MIDDLEWARE = [
@@ -154,26 +155,3 @@ if sys.platform.startswith('win32'):
     locale.setlocale(locale.LC_ALL, "Persian_Iran.UTF-8")
 else:
     locale.setlocale(locale.LC_ALL, "fa_IR.UTF-8")
-
-'''
-Upload To Git:
-
-git init
-git add .
-git commit -m "Initial commit"
-git push origin master
-'''
-
-"""
-Super User:
-1-[
-username: mohammad
-email: mhmd.85.mohammad@gmail.com
-password: mAtena85
-]
-2-[
-username: mhmd
-email: mhmd@gmail.com
-password: m12345
-]
-"""

@@ -79,17 +79,17 @@
                 <!-- info -->
                 <div class="lg:w-5/12">
                     <div class="mb-7 text-xs flex flex-wrap space-y-2 md:space-y-0 items-center gap-x-2 opacity-90">
-                        <a href="{% url 'category_content' a_s_p.subcategory.category.slug %}"
+                        <a href="{% url 'category_content' a_s_p.category.slug %}"
                            class="text-zinc-500 hover:text-primary-500 transition">
-                            {{ a_s_p.subcategory.category.title }}
+                            {{ a_s_p.category.title }}
                         </a>
                         <svg class="size-3 fill-zinc-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                              fill="#3d3d3d" viewBox="0 0 256 256">
                             <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
                         </svg>
-                        <a href="{% url 'sub_category_content' a_s_p.subcategory.slug %}"
+                        <a href="{% url 'brand_content' a_s_p.brand.slug %}"
                            class="text-zinc-500 hover:text-primary-500 transition">
-                            {{ a_s_p.subcategory.title }}
+                            {{ a_s_p.brand.title }}
                         </a>
                         <svg class="size-3 fill-zinc-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                              fill="#3d3d3d" viewBox="0 0 256 256">
