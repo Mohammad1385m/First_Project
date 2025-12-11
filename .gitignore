@@ -1,16 +1,17 @@
-# =========================
+# =======================================
 # Python
-# =========================
+# =======================================
 __pycache__/
 *.py[cod]
+*$py.class
 *.pyo
 *.pyd
 *.pdb
 *.so
 *.egg
 *.egg-info/
-dist/
 build/
+dist/
 wheels/
 
 # Virtual environments
@@ -20,39 +21,39 @@ ENV/
 *.env
 *.venv
 
-# =========================
+# =======================================
 # Django
-# =========================
+# =======================================
 
-# SQLite database (if used)
+# SQLite database
 db.sqlite3
 db.sqlite3-journal
 
-# Django logs
-*.log
-
-# Django static/media files (generated)
-staticfiles/
-static/
-media/
-
-# Local settings
-*.local_settings.py
+# Local Django settings
 local_settings.py
+*.local_settings.py
 
 # Django secret key files
 secret_key.txt
 
-# =========================
-# Environment variables
-# =========================
+# Django static (collected) & media uploads
+staticfiles/
+media/
+
+# Logs
+*.log
+
+# =======================================
+# Environment files
+# =======================================
+.env
 *.env
 .env.*
-!env.example
+!env.example  # keep example env
 
-# =========================
+# =======================================
 # IDEs / Editors
-# =========================
+# =======================================
 
 # VSCode
 .vscode/
@@ -61,31 +62,51 @@ secret_key.txt
 .idea/
 *.iml
 
-# =========================
-# OS / General
-# =========================
+# =======================================
+# OS Files
+# =======================================
 .DS_Store
 Thumbs.db
 
-# =========================
-# Node (if using tailwind/npm)
-# =========================
+# =======================================
+# Node / Tailwind / npm
+# =======================================
 node_modules/
 npm-debug.log
+yarn-debug.log
 yarn-error.log
+package-lock.json
+pnpm-lock.yaml
 
-# =========================
-# Coverage / Testing
-# =========================
+# =======================================
+# Testing / Coverage
+# =======================================
 htmlcov/
 .coverage
 .coverage.*
 .cache
 pytest_cache/
 junitxml/
+nosetests.xml
 
-Theme/
+# =======================================
+# Migrations you want to ignore (OPTIONAL)
+# Uncomment if you want to ignore empty initial migrations
+# */migrations/*__pycache__/
+# */migrations/*.py
+
+# =======================================
+# Project-specific folders (you can customize)
+# =======================================
+
+# User uploads or temporary work folders
 Uploads/
+uploads/
 
-accounts and passwords
-git codes
+# Themes, assets, custom user folders
+Theme/
+theme/
+
+# Any local files
+accounts and passwords/
+git codes/
