@@ -84,5 +84,8 @@ htmlcov/
 pytest_cache/
 junitxml/
 
-Theme
-Uploads
+Theme/
+Uploads/
+
+accounts and passwords
+git codes

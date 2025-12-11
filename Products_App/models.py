@@ -31,7 +31,7 @@ class Product_Category(models.Model):
 """
 class Product_SubCategory(models.Model):
     title = models.CharField()
-    category = models.ForeignKey(to=Product_Category, on_delete=models.CASCADE)
+    category = models.ManyToManyField(to=Product_Category)
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
 

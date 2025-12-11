@@ -31,21 +31,21 @@
 {% endif %}
 
 <!-- loading -->
-    <div id="loading"
-         class="z-50 fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-bl from-zinc-50 to-zinc-100 transition-opacity duration-700">
-        <div class="wrapper">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-        </div>
-        <div class="flex items-center gap-6 mt-10">
-            <img class="max-w-20 md:max-w-36" src="/static/assets/image/logo.png" alt=""/>
-            <div class="text-xl md:text-3xl font-yekanBakhExtraBold text-zinc-800">فروشگاه آنلاین دیجیتو</div>
-        </div>
+<div id="loading"
+     class="z-50 fixed inset-0 flex flex-col items-center justify-center bg-gradient-to-bl from-zinc-50 to-zinc-100 transition-opacity duration-700">
+    <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
     </div>
+    <div class="flex items-center gap-6 mt-10">
+        <img class="max-w-20 md:max-w-36" src="/static/assets/image/logo.png" alt=""/>
+        <div class="text-xl md:text-3xl font-yekanBakhExtraBold text-zinc-800">فروشگاه آنلاین دیجیتو</div>
+    </div>
+</div>
 
 <!-- progress bar -->
 <div id="progressBar"></div>
@@ -91,12 +91,13 @@
             });
         }
     } catch (error) {
-        console.log("e")
+        console.log(error)
     }
 </script>
 
 {% block js %}
-<script src="/static/assets/js/blogSingleScripts.js"></script>
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/static/assets/js/blogSingleScripts.js"></script>
 {% endblock %}
 
 </body>

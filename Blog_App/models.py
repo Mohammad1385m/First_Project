@@ -43,7 +43,7 @@ class Block_Content_Model(models.Model):
 class Blog_Comment(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     blog = models.ForeignKey(to=Blog_Model, on_delete=models.CASCADE, related_name="comments")
-    text = models.TextField()
+    text = models.TextField(null=False, blank=False)
     # liked = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=False)

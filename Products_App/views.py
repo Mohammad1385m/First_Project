@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from unicodedata import category
+
 from Products_App.models import *
 
 
@@ -7,9 +9,13 @@ from Products_App.models import *
 
 def products_list(request):
     pros = Product_Model.objects.filter(is_active=True).order_by("-id")
+    subcategories = Product_SubCategory.objects.filter(is_active=True).order_by("-id")
+    categories = Product_Category.objects.filter(is_active=True).order_by("-id")
     new_pros = pros[:3]
     return render(request, "shop.html", {
         "pros": pros,
+        "subcategories": subcategories,
+        "categories": categories,
         "new_pros": new_pros
     })
 

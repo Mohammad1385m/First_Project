@@ -18,7 +18,7 @@ class Home_View(View):
         return products_in_slider_1
 
 def show_message(request):
-    messages.success(request, "Home View Page")
+    messages.success(request, "به صفحه اصلی منتقل شدید")
     return redirect("home")
 
 def header_component(request):
