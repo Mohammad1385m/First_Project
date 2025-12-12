@@ -40,10 +40,10 @@ def category_content(request, slug):
     })
 
 
-# def brand_content(request, slug):
-#     a_single_brand = BrandModel.objects.filter(slug=slug).first()
-#     products_in_brand = Product_Model.objects.filter(brand=a_single_brand)
-#     return render(request, "categoryContent.html", {
-#         "a_s_b": a_single_brand,
-#         "p_i_b": products_in_brand
-#     })
+def brand_content(request, slug):
+    a_single_brand = BrandModel.objects.filter(slug=slug).first()
+    products_in_brand = Product_Model.objects.filter(brand=a_single_brand)
+    return render(request, "categoryContent.html", {
+        "a_s_b": a_single_brand,
+        "p_i_b": products_in_brand
+    })

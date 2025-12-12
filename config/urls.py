@@ -28,7 +28,8 @@ urlpatterns = [
     path('contact_us', include("Contact_Us_App.urls")),
     path('products/', include("Products_App.urls")),
     path('user/', include("User_App.urls")),
-    path('blog/', include("Blog_App.urls"))
+    path('blog/', include("Blog_App.urls")),
+    path('order/', include("Order_App.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

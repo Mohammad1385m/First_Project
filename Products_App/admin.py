@@ -3,6 +3,7 @@ from Products_App.models import *
 
 
 # Register your models here.
+
 class ProductsAdmin(admin.ModelAdmin):
     list_display = ["title", "price", "is_active", "category", "brand"]
     list_filter = ["is_active", "category", "brand"]
