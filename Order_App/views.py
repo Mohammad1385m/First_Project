@@ -9,8 +9,26 @@ from Order_App.models import *
 
 class CartView(View):
     def get(self, request):
-        context = {}
-        return render(request, "cart.html", context)
+        if request.user.is_authenticated:
+            user = request.user
+            cart = OrderModel.objects.filter(user=user, is_paid=False).prefetch_related("orderdetails_set").first()
+            total_amount = 0
+            for item in cart.orderdetails_set.all():
+                total_amount += int(round((item.final_price * item.count) - ((item.final_price * item.off) / 100), 0))
+            final_payable_price = total_amount
+
+            if cart is not None:
+                return render(request, "cart.html", {
+                    "user": user,
+                    "cart": cart,
+                    "final_payable_price": final_payable_price
+                })
+            else:
+                return render(request, "cart.html", {
+                    "user": user,
+                })
+        else:
+            pass
 
 
 def add_to_basket(request):
@@ -34,7 +52,8 @@ def add_to_basket(request):
                 order_details.count += product_count
                 order_details.save()
             else:
-                new_order_details = OrderDetails(order=order, product=product, count=product_count, off=product.off)
+                new_order_details = OrderDetails(order=order, product=product, count=product_count, off=product.off,
+                                                 final_price=product.price)
                 new_order_details.save()
 
             return JsonResponse({

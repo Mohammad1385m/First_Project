@@ -9,10 +9,16 @@ function add_to_basket(product_id) {
             swal.fire({
                 position: "center",
                 icon: "success",
+                showDenyButton: true,
+                confirmButtonText:"بله",
+                denyButtonText:"خیر",
                 title: "محصول به سبد خرید اضافه شد",
+                text: "میخواهید به سبد خرید بروید؟"
             }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = "/order/cart/"
+                    } else if (result.isDenied) {
+
                     }
                 }
             );

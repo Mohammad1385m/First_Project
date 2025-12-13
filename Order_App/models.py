@@ -20,12 +20,20 @@ class OrderModel(models.Model):
     def __str__(self):
         return f"{self.id} - {self.user} - {self.is_paid}"
 
+
 class OrderDetails(models.Model):
     order = models.ForeignKey(to=OrderModel, on_delete=models.CASCADE)
     product = models.ForeignKey(to=Product_Model, on_delete=models.CASCADE)
     count = models.IntegerField(default=1)
     off = models.IntegerField(default=0)
     color = models.CharField(null=True, blank=True)
+    final_price = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.id} - {self.order.user} - {self.product}"
+
+    def discount(self):
+        return self.final_price - (self.final_price * (self.off / 100))
+
+    def total_price(self):
+        return self.discount() * self.count

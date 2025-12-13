@@ -56,7 +56,6 @@ class Product_Model(models.Model):
     description = models.TextField()
     color = models.ManyToManyField(to="Product_Color")
     main_image = models.ImageField(upload_to="products/", null=True, blank=True)
-    # subcategory = models.ForeignKey(to=Product_SubCategory, on_delete=models.CASCADE)
     category = models.ForeignKey(to=Product_Category, on_delete=models.CASCADE)
     brand = models.ForeignKey(to=BrandModel, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
