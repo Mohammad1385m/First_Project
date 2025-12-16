@@ -1,6 +1,5 @@
-let product_count = $("#product_count")
-
 function add_to_basket(product_id) {
+    let product_count = $("#product_count")
     $.get("/order/add_to_basket/", {
         "product_id": product_id,
         "product_count": product_count.val(),
@@ -10,8 +9,8 @@ function add_to_basket(product_id) {
                 position: "center",
                 icon: "success",
                 showDenyButton: true,
-                confirmButtonText:"بله",
-                denyButtonText:"خیر",
+                confirmButtonText: "بله",
+                denyButtonText: "خیر",
                 title: "محصول به سبد خرید اضافه شد",
                 text: "میخواهید به سبد خرید بروید؟"
             }).then((result) => {
@@ -22,8 +21,7 @@ function add_to_basket(product_id) {
                     }
                 }
             );
-        }
-        else if (res.status === "unauthorized") {
+        } else if (res.status === "unauthorized") {
             Swal.fire({
                 position: "center",
                 icon: "warning",
@@ -34,16 +32,52 @@ function add_to_basket(product_id) {
                     }
                 }
             );
-        } else if (res.status === "not_valid"){
+        } else if (res.status === "not_valid") {
             Swal.fire({
                 position: "center",
                 icon: "error",
                 title: "مشکلی به وجود آمد",
-            }).then((result)=>{
+            }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.reload()
                 }
             })
         }
+    })
+}
+
+function increase_quantity(product_id) {
+    $.get("/order/increase-quantity/", {
+        "product_id": product_id
+    })
+}
+
+function decrease_quantity(product_id) {
+    $.get("/order/decrease-quantity/", {
+        "product_id": product_id
+    }).then(res => {
+        if (res.status === "remove") {
+            swal.fire({
+                position: "center",
+                icon: "warning",
+                showDenyButton: true,
+                confirmButtonText: "بله",
+                denyButtonText: "خیر",
+                title: "میخواهید این محصول را حذف کنید؟",
+            }).then((result) => {
+                    if (result.isConfirmed) {
+                        delete_item(product_id)
+                    } else if (result.isDenied) {
+
+                    }
+                }
+            );
+        }
+    })
+}
+
+function delete_item(product_id) {
+    $.get("/order/delete-item/", {
+        "product_id": product_id
     })
 }

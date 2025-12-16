@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
-
 from Order_App.models import *
 
 
@@ -14,8 +13,9 @@ class CartView(View):
             cart = OrderModel.objects.filter(user=user, is_paid=False).prefetch_related("orderdetails_set").first()
             total_amount = 0
             for item in cart.orderdetails_set.all():
-                total_amount += int(round((item.final_price * item.count) - ((item.final_price * item.off) / 100), 0))
-            final_payable_price = total_amount
+                total_amount += (item.final_price - ((item.final_price / 100) * item.off)) * item.count
+
+            final_payable_price = int(round(total_amount, 0))
 
             if cart is not None:
                 return render(request, "cart.html", {
@@ -33,7 +33,6 @@ class CartView(View):
 
 def add_to_basket(request):
     if request.method == "GET":
-        print()
         if request.user.is_authenticated:
             product_id = request.GET.get("product_id")
             product_count = request.GET.get("product_count")
@@ -63,3 +62,63 @@ def add_to_basket(request):
             return JsonResponse({
                 "status": "unauthorized"
             })
+
+
+def increase_quantity(request):
+    if request.method == "GET":
+        product_id = request.GET.get("product_id")
+        try:
+            product_id = int(product_id)
+            product = Product_Model.objects.filter(id=product_id).first()
+        except:
+            return JsonResponse({
+                "status": "not_valid"
+            })
+        order = OrderModel.objects.filter(user=request.user, is_paid=False).first()
+        order_details = OrderDetails.objects.filter(order=order, product=product).first()
+        order_details.count += 1
+        order_details.save()
+        return JsonResponse({
+            "status": "success"
+        })
+
+
+def decrease_quantity(request):
+    if request.method == "GET":
+        product_id = request.GET.get("product_id")
+
+        try:
+            product_id = int(product_id)
+            product = Product_Model.objects.filter(id=product_id).first()
+        except:
+            return JsonResponse({
+                "status": "not_valid"
+            })
+        order = OrderModel.objects.filter(user=request.user, is_paid=False).first()
+        order_details = OrderDetails.objects.filter(order=order, product=product).first()
+        if order_details.count > 1:
+            order_details.count -= 1
+            order_details.save()
+            return JsonResponse({
+                "status": "success"
+            })
+        elif order_details.count <= 1:
+            return JsonResponse({
+                "status" : "remove"
+            })
+
+def delete_item(request):
+    if request.method == "GET":
+        product_id = request.GET.get("product_id")
+
+        try:
+            product_id = int(product_id)
+            product = Product_Model.objects.filter(id=product_id).first()
+            print(product_id, product)
+        except:
+            return JsonResponse({
+                "status": "not_valid"
+            })
+        order = OrderModel.objects.filter(user=request.user, is_paid=False).first()
+        order_details = OrderDetails.objects.filter(order=order, product=product).first()
+        order_details.delete()
