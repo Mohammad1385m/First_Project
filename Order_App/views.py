@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.views import View
 from Order_App.models import *
 
@@ -78,9 +79,30 @@ def increase_quantity(request):
         order_details = OrderDetails.objects.filter(order=order, product=product).first()
         order_details.count += 1
         order_details.save()
+
+        user = request.user
+        cart = OrderModel.objects.filter(user=user, is_paid=False).prefetch_related("orderdetails_set").first()
+        total_amount = 0
+        for item in cart.orderdetails_set.all():
+            total_amount += (item.final_price - ((item.final_price / 100) * item.off)) * item.count
+
+        final_payable_price = int(round(total_amount, 0))
+
+        context = {
+            "user": user,
+            "cart": cart,
+            "final_payable_price": final_payable_price
+        }
+        content = render_to_string("cartOrderDetails.html", context)
         return JsonResponse({
-            "status": "success"
+            "status": "success",
+            "content": content
         })
+        # return render(request, "cartOrderDetails.html", {
+        #     "user": user,
+        #     "cart": cart,
+        #     "final_payable_price": final_payable_price
+        # })
 
 
 def decrease_quantity(request):
@@ -104,8 +126,9 @@ def decrease_quantity(request):
             })
         elif order_details.count <= 1:
             return JsonResponse({
-                "status" : "remove"
+                "status": "remove"
             })
+
 
 def delete_item(request):
     if request.method == "GET":

@@ -1,7 +1,3 @@
-// const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-// $.ajaxSetup({
-//     headers: {"X-CSRFToken": csrftoken}
-// });
 let textarea = document.querySelector("#comment_text")
 
 function send_comment(blog_id) {

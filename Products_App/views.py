@@ -22,12 +22,14 @@ def products_list(request):
 
 def product_detail(request, slug):
     a_single_product = Product_Model.objects.filter(slug=slug).first()
+    similar_products = Product_Model.objects.filter(is_active=True, brand=a_single_product.brand).exclude(id=a_single_product.id)
     pro_color = Product_Color.objects.filter(product_model=a_single_product)
     pro_extra_images = Product_Extra_Images.objects.filter(product=a_single_product)
     return render(request, "singleProduct.html", {
         "a_s_p": a_single_product,
         "pro_color": pro_color,
         "pro_extra_images": pro_extra_images,
+        "similar_products": similar_products
     })
 
 

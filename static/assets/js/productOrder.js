@@ -1,3 +1,5 @@
+let cart_content = $("#cart_orders_container")
+
 function add_to_basket(product_id) {
     let product_count = $("#product_count")
     $.get("/order/add_to_basket/", {
@@ -49,7 +51,13 @@ function add_to_basket(product_id) {
 function increase_quantity(product_id) {
     $.get("/order/increase-quantity/", {
         "product_id": product_id
-    })
+    }).then(
+        res => {
+            if (res.status === "success") {
+                cart_content.html(res.content)
+            }
+        }
+    )
 }
 
 function decrease_quantity(product_id) {
@@ -67,6 +75,7 @@ function decrease_quantity(product_id) {
             }).then((result) => {
                     if (result.isConfirmed) {
                         delete_item(product_id)
+                        window.location.reload()
                     } else if (result.isDenied) {
 
                     }
