@@ -1,3 +1,4 @@
+from django.contrib.admin import action
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
@@ -95,14 +96,9 @@ def increase_quantity(request):
         }
         content = render_to_string("cartOrderDetails.html", context)
         return JsonResponse({
-            "status": "success",
+            "status": "increase",
             "content": content
         })
-        # return render(request, "cartOrderDetails.html", {
-        #     "user": user,
-        #     "cart": cart,
-        #     "final_payable_price": final_payable_price
-        # })
 
 
 def decrease_quantity(request):
@@ -118,17 +114,38 @@ def decrease_quantity(request):
             })
         order = OrderModel.objects.filter(user=request.user, is_paid=False).first()
         order_details = OrderDetails.objects.filter(order=order, product=product).first()
+
         if order_details.count > 1:
             order_details.count -= 1
             order_details.save()
-            return JsonResponse({
-                "status": "success"
-            })
+            action = "decrease"
         elif order_details.count <= 1:
-            return JsonResponse({
-                "status": "remove"
-            })
+            action = "remove"
+        user = request.user
+        cart = OrderModel.objects.filter(user=user, is_paid=False).prefetch_related("orderdetails_set").first()
+        total_amount = 0
+        for item in cart.orderdetails_set.all():
+            total_amount += (item.final_price - ((item.final_price / 100) * item.off)) * item.count
 
+        final_payable_price = int(round(total_amount, 0))
+
+        context = {
+            "user": user,
+            "cart": cart,
+            "final_payable_price": final_payable_price,
+            # "action": action
+        }
+        content = render_to_string("cartOrderDetails.html", context)
+
+        # print(order_details.count)
+        # print("decrease")
+        # order_details.count -= 1
+        # order_details.save()
+        # print(order_details.count)
+        return JsonResponse({
+            "status": action,
+            "content": content
+        })
 
 def delete_item(request):
     if request.method == "GET":
@@ -137,7 +154,6 @@ def delete_item(request):
         try:
             product_id = int(product_id)
             product = Product_Model.objects.filter(id=product_id).first()
-            print(product_id, product)
         except:
             return JsonResponse({
                 "status": "not_valid"

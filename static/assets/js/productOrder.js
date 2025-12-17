@@ -53,7 +53,7 @@ function increase_quantity(product_id) {
         "product_id": product_id
     }).then(
         res => {
-            if (res.status === "success") {
+            if (res.status === "increase") {
                 cart_content.html(res.content)
             }
         }
@@ -64,7 +64,9 @@ function decrease_quantity(product_id) {
     $.get("/order/decrease-quantity/", {
         "product_id": product_id
     }).then(res => {
-        if (res.status === "remove") {
+        if( res.status === "decrease") {
+            cart_content.html(res.content)
+        } else if (res.status === "remove") {
             swal.fire({
                 position: "center",
                 icon: "warning",
@@ -75,7 +77,7 @@ function decrease_quantity(product_id) {
             }).then((result) => {
                     if (result.isConfirmed) {
                         delete_item(product_id)
-                        window.location.reload()
+                        cart_content.html(res.content)
                     } else if (result.isDenied) {
 
                     }
