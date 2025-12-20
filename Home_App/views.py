@@ -34,18 +34,25 @@ def show_message(request):
 def header_component(request):
     categories_in_dropdown = Product_Category.objects.filter(is_active=True)
     brands_in_dropdown = BrandModel.objects.filter(is_active=True)
-    user = request.user
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = None
     cart = OrderModel.objects.filter(user=user, is_paid=False).prefetch_related("orderdetails_set").first()
     total_payment = 0
-    for order in cart.orderdetails_set.all():
-        discount_value = order.final_price - (order.final_price * (order.off / 100))
-        total_payment += int(round(discount_value, 0)) * order.count
+
+    if cart is not None:
+        for order in cart.orderdetails_set.all():
+            discount_value = order.final_price - (order.final_price * (order.off / 100))
+            total_payment += int(round(discount_value, 0)) * order.count
+
     return render(request, "Header.html", {
         "categories_in_dropdown": categories_in_dropdown,
         "brands_in_dropdown": brands_in_dropdown,
         "site_settings": site_settings,
         "cart": cart,
-        "total_payment": total_payment
+        "total_payment": total_payment,
+        "user": user,
     })
 
 

@@ -17,10 +17,11 @@
         {% endblock %}
     </title>
 
+    <link rel="stylesheet" href="/static/assets/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/static/assets/css/main.css">
+    <link rel="stylesheet" href="/static/assets/css/blogSingle.css">
     {% block css %}
-        <link rel="stylesheet" href="/static/assets/sweetalert2/dist/sweetalert2.min.css">
-        <link rel="stylesheet" href="/static/assets/css/main.css">
-        <link rel="stylesheet" href="/static/assets/css/blogSingle.css">
+
     {% endblock %}
 </head>
 
@@ -97,14 +98,16 @@
     }
 </script>
 
+
+<script src="/static/assets/js/jquery.js"></script>
+<script src="/static/assets/js/blogSingleScripts.js"></script>
+<script src="/static/assets/js/swiper.min.js"></script>
+<script src="/static/assets/js/sliders.js"></script>
+<script src="/static/assets/js/main.js"></script>
+<script src="/static/assets/js/nouislider.min.js"></script>
+<script src="/static/assets/js/productOrder.js"></script>
 {% block js %}
-    <script src="/static/assets/js/jquery.js"></script>
-    <script src="/static/assets/js/blogSingleScripts.js"></script>
-    <script src="/static/assets/js/swiper.min.js"></script>
-    <script src="/static/assets/js/sliders.js"></script>
-    <script src="/static/assets/js/main.js"></script>
-    <script src="/static/assets/js/nouislider.min.js"></script>
-    <script src="/static/assets/js/productOrder.js"></script>
+    
 {% endblock %}
 
 </body>

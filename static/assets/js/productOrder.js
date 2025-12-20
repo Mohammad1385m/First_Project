@@ -19,7 +19,7 @@ function add_to_basket(product_id) {
                     if (result.isConfirmed) {
                         window.location.href = "/order/cart/"
                     } else if (result.isDenied) {
-
+                        window.location.reload()
                     }
                 }
             );
@@ -64,7 +64,7 @@ function decrease_quantity(product_id) {
     $.get("/order/decrease-quantity/", {
         "product_id": product_id
     }).then(res => {
-        if( res.status === "decrease") {
+        if (res.status === "decrease") {
             cart_content.html(res.content)
         } else if (res.status === "remove") {
             swal.fire({
@@ -77,7 +77,6 @@ function decrease_quantity(product_id) {
             }).then((result) => {
                     if (result.isConfirmed) {
                         delete_item(product_id)
-                        cart_content.html(res.content)
                     } else if (result.isDenied) {
 
                     }
@@ -90,5 +89,7 @@ function decrease_quantity(product_id) {
 function delete_item(product_id) {
     $.get("/order/delete-item/", {
         "product_id": product_id
+    }).then(res => {
+        cart_content.html(res.content)
     })
 }

@@ -76,12 +76,6 @@ class Login_Register(View):
             "login_form": login_form
         })
 
-
-class User_Dashboard(View):
-    def get(self, request):
-        return render(request, "dashboard.html", {})
-
-
 class Otp_View(View):
     def get(self, request, token):
         cache_key = f"otp-{token}"
@@ -126,5 +120,5 @@ class Otp_View(View):
 
 def user_logout(request):
     logout(request)
-    messages.success(request, "You have been logged out.")
+    messages.success(request, "شما از حساب کاربری خود خارج شدید")
     return redirect("home")

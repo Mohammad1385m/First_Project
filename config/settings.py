@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'Contact_Us_App',
     'Blog_App',
     'Site_Settings_App',
-    'Order_App'
+    'Order_App',
+    'User_Dashboard'
 ]
 
 MIDDLEWARE = [

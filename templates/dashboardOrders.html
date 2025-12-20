@@ -1,0 +1,72 @@
+{% extends "dashboardLayout.html" %}
+{% load poll_extras %}
+
+{% block title %}
+    سفارشات
+{% endblock %}
+
+{% block container %}
+    <main class="p-6 flex-1 overflow-y-auto">
+        <div class="bg-white rounded-2xl min-h-80 h-auto shadow-custom p-4">
+            <div class="px-2 md:px-3 pt-3 pb-5 mb-3 text-zinc-700 text-sm md:text-base flex items-center gap-x-2 border-b border-zinc-200">
+                <svg class="fill-primary-500" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill=""
+                     viewBox="0 0 256 256">
+                    <path d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,56a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"></path>
+                </svg>
+                سفارشات
+            </div>
+            <div class="relative flex flex-col w-full h-full overflow-scroll text-gray-700">
+                <table class="w-full text-right table-auto min-w-max">
+                    <thead>
+                    <tr>
+                        <th class="p-4 border-b border-b-zinc-400">
+                            <p class="block text-sm opacity-70">
+                                شماره سفارش
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-b-zinc-400">
+                            <p class="block text-sm opacity-70">
+                                تاریخ
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-b-zinc-400">
+                            <p class="block text-sm opacity-70">
+                                مبلغ
+                            </p>
+                        </th>
+                        <th class="p-4 border-b border-b-zinc-400">
+                            <p class="block text-sm opacity-70">
+                                جزئیات
+                            </p>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in paid_orders %}
+                        <tr class="even:bg-zinc-100">
+                            <td class="p-4">
+                                <p class="block text-sm">
+                                    {{ order.factor_id }}
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block text-sm">
+                                    {{ order.create_at|jalali_date_1 }}
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block text-sm">
+                                    {{ order.total_cost }} تومان
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <a href="{% url 'dashboard_order_details' order.id %}" class="block text-xs">مشاهده</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+{% endblock %}

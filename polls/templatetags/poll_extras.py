@@ -35,5 +35,21 @@ def total_price(value, amount):
 def final_total_price(value):
     total_amount = 0
     for item in value:
+        total_amount += item.product.price * item.count
+    return total_amount
+
+
+@register.filter(name="total_cost")
+def total_cost(value):
+    total_amount = 0
+    for item in value.orderdetails_set.all():
         total_amount += item.final_price * item.count
     return total_amount
+
+
+@register.filter(name="total_discount")
+def total_discount(value):
+    discount_value = 0
+    for item in value:
+        discount_value += int(round((item.product.price * item.off / 100) * item.count, 0))
+    return discount_value
